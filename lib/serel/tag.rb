@@ -1,13 +1,14 @@
 module Serel
   class Tag < Base
     attribute :name, String
+    attribute :tag_name, String
     attribute :count, Integer
     attribute :is_required, Boolean
     attribute :is_moderator_only, Boolean
     attribute :user_id, Integer
     attribute :has_synonyms, Boolean
     attribute :last_activity_date, DateTime
-
+    
     finder_methods :all, :get
 
     # Finds a tag by name
@@ -69,6 +70,10 @@ module Serel
 
     def wiki
       type(:tag_wiki, :singular).url("tags/#{name}/wikis").get
+    end
+
+    def name
+      @data[:name].nil? ? @data[:tag_name] : @data[:name]
     end
   end
 end

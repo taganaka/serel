@@ -110,5 +110,14 @@ module Serel
       arg = tags.length > 1 ? tags.join(";") : tags.pop
       type(:question).url("users/#{id}/tags/#{arg}/top-questions")
     end
+
+    def top_answer_tags
+      type(:tag).url("users/#{id}/top-answer-tags")
+    end
+
+    def top_question_tags
+      type(:tag).url("users/#{id}/top-question-tags")
+    end
+
   end
 end
